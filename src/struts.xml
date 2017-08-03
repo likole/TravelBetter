@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <package name="default" namespace="/" extends="json-default">
+        <default-action-ref name="404"/>
+        <global-results>
+            <result name="500">/WEB-INF/500.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="500"/>
+            <exception-mapping exception="java.sql.SQLException" result="500"/>
+        </global-exception-mappings>
+        <action name="404" class="cn.likole.TravelBetter.controller.ErrorController" method="notFound"></action>
+        <action name="user_*" class="cn.likole.TravelBetter.controller.UserController" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+        <action name="find_*" class="cn.likole.TravelBetter.controller.FindController" method="{1}">
+            <result type="json">
+                <param name="root">map</param>
+            </result>
+        </action>
+    </package>
+</struts>
