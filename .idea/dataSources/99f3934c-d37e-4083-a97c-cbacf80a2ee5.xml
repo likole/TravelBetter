@@ -12,153 +12,181 @@
     <schema id="6" parent="1" name="performance_schema"/>
     <schema id="7" parent="1" name="test"/>
     <table id="8" parent="2" name="Find"/>
-    <table id="9" parent="2" name="FindPicture"/>
-    <table id="10" parent="2" name="User"/>
-    <column id="11" parent="8" name="fid">
+    <table id="9" parent="2" name="FindLike"/>
+    <table id="10" parent="2" name="FindPicture"/>
+    <table id="11" parent="2" name="User"/>
+    <column id="12" parent="8" name="fid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="12" parent="8" name="title">
+    <column id="13" parent="8" name="title">
       <Position>2</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="13" parent="8" name="content">
+    <column id="14" parent="8" name="content">
       <Position>3</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <column id="14" parent="8" name="uid">
+    <column id="15" parent="8" name="uid">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="15" parent="8" name="time">
+    <column id="16" parent="8" name="time">
       <Position>5</Position>
-      <DataType>date|0</DataType>
+      <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="8" name="like_num">
+    <column id="17" parent="8" name="like_num">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <index id="17" parent="8" name="Find_User_uid_fk">
+    <index id="18" parent="8" name="FK6g2ackl0q3s807n9dkjlgdan2">
       <ColNames>uid</ColNames>
     </index>
-    <key id="18" parent="8" name="PRIMARY">
+    <key id="19" parent="8" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>fid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="19" parent="8" name="Find_User_uid_fk">
+    <foreign-key id="20" parent="8" name="FK6g2ackl0q3s807n9dkjlgdan2">
       <ColNames>uid</ColNames>
       <RefSchemaName>TravelBetter</RefSchemaName>
       <RefTableName>User</RefTableName>
       <RefColNames>uid</RefColNames>
     </foreign-key>
-    <column id="20" parent="9" name="pid">
+    <foreign-key id="21" parent="8" name="Find_User_uid_fk">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>TravelBetter</RefSchemaName>
+      <RefTableName>User</RefTableName>
+      <RefColNames>uid</RefColNames>
+    </foreign-key>
+    <column id="22" parent="9" name="lid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="21" parent="9" name="path">
+    <column id="23" parent="9" name="fid">
       <Position>2</Position>
-      <DataType>varchar(40)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="22" parent="9" name="fid">
+    <column id="24" parent="9" name="uid">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="23" parent="9" name="FindPicture_Find_fid_fk">
+    <key id="25" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>lid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="26" parent="10" name="pid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="27" parent="10" name="path">
+      <Position>2</Position>
+      <DataType>varchar(40)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="10" name="fid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="29" parent="10" name="FindPicture_Find_fid_fk">
       <ColNames>fid</ColNames>
     </index>
-    <key id="24" parent="9" name="PRIMARY">
+    <key id="30" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>pid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="25" parent="9" name="FindPicture_Find_fid_fk">
+    <foreign-key id="31" parent="10" name="FindPicture_Find_fid_fk">
       <ColNames>fid</ColNames>
       <RefSchemaName>TravelBetter</RefSchemaName>
       <RefTableName>Find</RefTableName>
       <RefColNames>fid</RefColNames>
     </foreign-key>
-    <column id="26" parent="10" name="uid">
+    <column id="32" parent="11" name="uid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="27" parent="10" name="username">
+    <column id="33" parent="11" name="username">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="28" parent="10" name="password">
+    <column id="34" parent="11" name="password">
       <Position>3</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="29" parent="10" name="gender">
+    <column id="35" parent="11" name="gender">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="30" parent="10" name="nickname">
+    <column id="36" parent="11" name="nickname">
       <Position>5</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="31" parent="10" name="sign">
+    <column id="37" parent="11" name="sign">
       <Position>6</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="32" parent="10" name="avatar">
+    <column id="38" parent="11" name="avatar">
       <Position>7</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="10" name="email">
+    <column id="39" parent="11" name="email">
       <Position>8</Position>
       <DataType>varchar(320)|0</DataType>
     </column>
-    <column id="34" parent="10" name="birthday">
+    <column id="40" parent="11" name="birthday">
       <Position>9</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="35" parent="10" name="address">
+    <column id="41" parent="11" name="address">
       <Position>10</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="36" parent="10" name="token">
+    <column id="42" parent="11" name="token">
       <Position>11</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="37" parent="10" name="User_token_uindex">
+    <index id="43" parent="11" name="User_token_uindex">
       <ColNames>token</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="38" parent="10" name="User_username_uindex">
+    <index id="44" parent="11" name="User_username_uindex">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="39" parent="10" name="PRIMARY">
+    <key id="45" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uid</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="40" parent="10" name="User_username_uindex">
+    <key id="46" parent="11" name="User_username_uindex">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>User_username_uindex</UnderlyingIndexName>
     </key>
-    <key id="41" parent="10" name="User_token_uindex">
+    <key id="47" parent="11" name="User_token_uindex">
       <ColNames>token</ColNames>
       <UnderlyingIndexName>User_token_uindex</UnderlyingIndexName>
     </key>

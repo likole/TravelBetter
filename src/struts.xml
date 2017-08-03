@@ -9,10 +9,10 @@
         <global-results>
             <result name="500">/WEB-INF/500.jsp</result>
         </global-results>
-        <global-exception-mappings>
-            <exception-mapping exception="java.lang.Exception" result="500"/>
-            <exception-mapping exception="java.sql.SQLException" result="500"/>
-        </global-exception-mappings>
+        <!--<global-exception-mappings>-->
+            <!--<exception-mapping exception="java.lang.Exception" result="500"/>-->
+            <!--<exception-mapping exception="java.sql.SQLException" result="500"/>-->
+        <!--</global-exception-mappings>-->
         <action name="404" class="cn.likole.TravelBetter.controller.ErrorController" method="notFound"></action>
         <action name="user_*" class="cn.likole.TravelBetter.controller.UserController" method="{1}">
             <result type="json">

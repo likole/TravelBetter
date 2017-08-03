@@ -12,6 +12,7 @@ import javax.persistence.Id;
 public class FindPicture {
     private int pid;
     private String path;
+    private int fid;
 
     @Id
     @Column(name = "pid")
@@ -51,5 +52,15 @@ public class FindPicture {
         int result = pid;
         result = 31 * result + (path != null ? path.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "fid")
+    public int getFid() {
+        return fid;
+    }
+
+    public void setFid(int fid) {
+        this.fid = fid;
     }
 }

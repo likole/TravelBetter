@@ -35,6 +35,9 @@ public class ErrorController extends ActionSupport {
         errorInfo.put(109,"邮箱地址不能为空");
         errorInfo.put(110,"该邮箱已被绑定");
         errorInfo.put(111,"绑定失败");
+        errorInfo.put(112,"您已经喜欢过了");
+        errorInfo.put(113,"该发现不存在");
+        errorInfo.put(114,"无权操作");
     }
 
     public static String getMessage(int rsCode) {

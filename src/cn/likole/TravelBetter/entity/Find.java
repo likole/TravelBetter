@@ -1,6 +1,7 @@
 package cn.likole.TravelBetter.entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Set;
 
@@ -16,8 +17,14 @@ public class Find {
     private int likeNum;
     private Set<FindPicture> findPictures;
     private User user;
+    private int uid;
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "fid")
     public int getFid() {
         return fid;
@@ -111,5 +118,15 @@ public class Find {
         result = 31 * result + (time != null ? time.hashCode() : 0);
         result = 31 * result + likeNum;
         return result;
+    }
+
+    @Basic
+    @Column(name = "uid")
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 }
