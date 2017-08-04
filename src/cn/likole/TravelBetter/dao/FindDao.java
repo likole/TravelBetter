@@ -9,7 +9,6 @@ import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -43,5 +42,9 @@ public class FindDao extends HibernateDaoSupport {
 
     public void save(Find find){
         getHibernateTemplate().save(find);
+    }
+
+    public void update(Find find) {
+        getHibernateTemplate().update(find);
     }
 }

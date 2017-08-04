@@ -1,7 +1,6 @@
 package cn.likole.TravelBetter.controller;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.sun.deploy.net.HttpResponse;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
@@ -14,12 +13,6 @@ import java.util.Map;
  */
 @Controller
 public class ErrorController extends ActionSupport {
-    public String notFound() throws IOException {
-        ServletActionContext.getResponse().setContentType("application/json;charset=UTF-8");
-        ServletActionContext.getResponse().getWriter().print("{\"status\":404,\"message\":\"Not Found\"}");
-        return NONE;
-    }
-
     public static Map<Integer, String> errorInfo;
 
     static {
@@ -38,9 +31,17 @@ public class ErrorController extends ActionSupport {
         errorInfo.put(112,"您已经喜欢过了");
         errorInfo.put(113,"该发现不存在");
         errorInfo.put(114,"无权操作");
+        errorInfo.put(115, "该图片不存在");
+        errorInfo.put(116, "该评论不存在");
     }
 
     public static String getMessage(int rsCode) {
         return errorInfo.getOrDefault(rsCode, null);
+    }
+
+    public String notFound() throws IOException {
+        ServletActionContext.getResponse().setContentType("application/json;charset=UTF-8");
+        ServletActionContext.getResponse().getWriter().print("{\"status\":404,\"message\":\"Not Found\"}");
+        return NONE;
     }
 }

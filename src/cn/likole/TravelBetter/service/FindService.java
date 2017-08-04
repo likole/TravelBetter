@@ -1,13 +1,9 @@
 package cn.likole.TravelBetter.service;
 
-import cn.likole.TravelBetter.dao.FindLikeDao;
-import cn.likole.TravelBetter.dao.FindDao;
-import cn.likole.TravelBetter.dao.UserDao;
+import cn.likole.TravelBetter.dao.*;
+import cn.likole.TravelBetter.dto.FindCommentDto;
 import cn.likole.TravelBetter.dto.FindDto;
-import cn.likole.TravelBetter.entity.Find;
-import cn.likole.TravelBetter.entity.FindLike;
-import cn.likole.TravelBetter.entity.FindPicture;
-import cn.likole.TravelBetter.entity.User;
+import cn.likole.TravelBetter.entity.*;
 import cn.likole.TravelBetter.util.TimeFormatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +27,10 @@ public class FindService {
     UserDao userDao;
     @Autowired
     FindLikeDao findLikeDao;
+    @Autowired
+    FindPictureDao findPictureDao;
+    @Autowired
+    FindCommentDao findCommentDao;
 
     /**
      * 将 Find 转化为 FindDto
@@ -103,8 +103,12 @@ public class FindService {
      * @param fid
      * @return
      */
-    public FindDto getByFid(int fid) {
-        return find2findDto(findDao.getByFid(fid));
+    public FindDto getByFid(int fid, String token) {
+
+        if (token != null && !"".equals(token))
+            return find2findDto(findDao.getByFid(fid), token);
+        else
+            return find2findDto(findDao.getByFid(fid));
     }
 
 
@@ -178,8 +182,125 @@ public class FindService {
         if (!find.getUser().getToken().equals(token)) return 114;
         FindPicture findPicture = new FindPicture();
         findPicture.setPath(path);
-        find.getFindPictures().add(findPicture);
+        findPicture.setFid(fid);
+        findPictureDao.save(findPicture);
         return 0;
     }
+
+
+    /**
+     * 删除图片
+     *
+     * @param token
+     * @param pid
+     * @return
+     */
+    public int delPicture(String token, int pid) {
+        FindPicture findPicture = findPictureDao.getByPid(pid);
+        if (findPicture == null) return 115;
+        Find find = findDao.getByFid(findPicture.getFid());
+        if (find == null) return 113;
+        if (!find.getUser().getToken().equals(token)) return 114;
+        findPictureDao.deleteByPid(pid);
+        return 0;
+    }
+
+
+    /**
+     * 将FindComment转化成FindCommentDto
+     *
+     * @param findComment
+     * @return
+     */
+    private FindCommentDto findComment2findCommentDto(FindComment findComment) {
+        FindCommentDto findCommentDto = new FindCommentDto();
+        findCommentDto.setCid(findComment.getCid());
+        findCommentDto.setFid(findComment.getFid());
+        findCommentDto.setNickname(findComment.getUser().getNickname());
+        findCommentDto.setAvatar(findComment.getUser().getAvatar());
+        findCommentDto.setContent(findComment.getContent());
+        findCommentDto.setTime(findComment.getTime());
+        findCommentDto.setTimeFormatted(TimeFormatUtil.formatTime(findComment.getTime()));
+        return findCommentDto;
+    }
+
+    /**
+     * 将FindComment转化成FindCommentDto
+     *
+     * @param findComment
+     * @return
+     */
+    private FindCommentDto findComment2findCommentDto(FindComment findComment, String token) {
+        FindCommentDto findCommentDto = new FindCommentDto();
+        findCommentDto.setCid(findComment.getCid());
+        findCommentDto.setFid(findComment.getFid());
+        findCommentDto.setNickname(findComment.getUser().getNickname());
+        findCommentDto.setAvatar(findComment.getUser().getAvatar());
+        findCommentDto.setSelf(findComment.getUser().getToken().equals(token));
+        findCommentDto.setContent(findComment.getContent());
+        findCommentDto.setTime(findComment.getTime());
+        findCommentDto.setTimeFormatted(TimeFormatUtil.formatTime(findComment.getTime()));
+        return findCommentDto;
+    }
+
+
+    /**
+     * 获取评论列表
+     *
+     * @param fid
+     * @return
+     */
+    public List<FindCommentDto> getComments(int fid, String token) {
+        List<FindComment> findComments = findCommentDao.getByFid(fid);
+        List<FindCommentDto> findCommentDtos = new ArrayList<>();
+        if (token == null || "".equals(token)) {
+            for (FindComment findComment : findComments) {
+                findCommentDtos.add(findComment2findCommentDto(findComment));
+            }
+        } else {
+            for (FindComment findComment : findComments) {
+                findCommentDtos.add(findComment2findCommentDto(findComment, token));
+            }
+        }
+        return findCommentDtos;
+    }
+
+    /**
+     * 添加评论
+     *
+     * @param token
+     * @param fid
+     * @param content
+     * @return
+     */
+    public int addComment(String token, int fid, String content) {
+        User user = userDao.getByToken(token);
+        if (user == null) return 104;
+
+        FindComment findComment = new FindComment();
+        findComment.setFid(fid);
+        findComment.setUser(user);
+        findComment.setContent(content);
+        findComment.setTime(new Date());
+        findCommentDao.save(findComment);
+        return 0;
+    }
+
+
+    /**
+     * 删除评论
+     *
+     * @param token
+     * @param cid
+     * @return
+     */
+    public int delComment(String token, int cid) {
+        FindComment findComment = findCommentDao.getByCid(cid);
+        if (findComment == null) return 116;
+        if (!findComment.getUser().getToken().equals(token)) return 114;
+        findCommentDao.deleteByCid(cid);
+        return 0;
+    }
+
 
 }

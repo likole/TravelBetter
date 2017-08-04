@@ -1,6 +1,5 @@
 package cn.likole.TravelBetter.controller;
 
-import cn.likole.TravelBetter.dao.FindDao;
 import cn.likole.TravelBetter.dto.FindDto;
 import cn.likole.TravelBetter.entity.Find;
 import cn.likole.TravelBetter.service.FindService;
@@ -30,6 +29,27 @@ public class FindController extends ActionSupport implements ModelDriven<Find> {
     File file;
     String fileFileName;
     String fileContentType;
+    int pid;
+    int cid;
+    @Autowired
+    FindService findService;
+    private Map<String, Object> map = new HashMap<>();
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
 
     public File getFile() {
         return file;
@@ -79,14 +99,9 @@ public class FindController extends ActionSupport implements ModelDriven<Find> {
         this.num = num;
     }
 
-    private Map<String, Object> map = new HashMap<>();
-
     public Map<String, Object> getMap() {
         return map;
     }
-
-    @Autowired
-    FindService findService;
 
     @Override
     public Find getModel() {
@@ -119,7 +134,7 @@ public class FindController extends ActionSupport implements ModelDriven<Find> {
      */
     public String getByFid() {
         setMessage(0);
-        map.put("find", findService.getByFid(find.getFid()));
+        map.put("find", findService.getByFid(find.getFid(), token));
         return SUCCESS;
     }
 
@@ -156,6 +171,13 @@ public class FindController extends ActionSupport implements ModelDriven<Find> {
     }
 
 
+    /**
+     * 添加图片
+     *
+     * @return
+     * @throws IOException
+     * @throws NoSuchAlgorithmException
+     */
     public String addPicture() throws IOException, NoSuchAlgorithmException {
         if (file.length() > 1000000) {
             setMessage(108);
@@ -176,7 +198,48 @@ public class FindController extends ActionSupport implements ModelDriven<Find> {
 
         inputStream.close();
         outputStream.close();
-        setMessage(findService.addPicture(token,find.getFid(),path));
+        setMessage(findService.addPicture(token, find.getFid(), fileName));
+        return SUCCESS;
+    }
+
+    /**
+     * 删除图片
+     *
+     * @return
+     */
+    public String delPicture() {
+        setMessage(findService.delPicture(token, pid));
+        return SUCCESS;
+    }
+
+    /**
+     * 获取评论
+     *
+     * @return
+     */
+    public String getComments() {
+        setMessage(0);
+        map.put("comments", findService.getComments(find.getFid(), token));
+        return SUCCESS;
+    }
+
+    /**
+     * 添加评论
+     *
+     * @return
+     */
+    public String addComment() {
+        setMessage(findService.addComment(token, find.getFid(), find.getContent()));
+        return SUCCESS;
+    }
+
+    /**
+     * 删除评论
+     *
+     * @return
+     */
+    public String delComment() {
+        setMessage(findService.delComment(token, cid));
         return SUCCESS;
     }
 }

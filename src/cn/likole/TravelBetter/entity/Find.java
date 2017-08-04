@@ -17,7 +17,6 @@ public class Find {
     private int likeNum;
     private Set<FindPicture> findPictures;
     private User user;
-    private int uid;
 
     public void setTime(Timestamp time) {
         this.time = time;
@@ -74,7 +73,7 @@ public class Find {
         this.likeNum = likeNum;
     }
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name="fid")
     public Set<FindPicture> getFindPictures() {
         return findPictures;
@@ -120,13 +119,4 @@ public class Find {
         return result;
     }
 
-    @Basic
-    @Column(name = "uid")
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
 }

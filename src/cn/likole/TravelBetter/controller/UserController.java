@@ -1,10 +1,8 @@
 package cn.likole.TravelBetter.controller;
 
-import cn.likole.TravelBetter.dao.UserDao;
 import cn.likole.TravelBetter.entity.User;
 import cn.likole.TravelBetter.service.UserService;
 import cn.likole.TravelBetter.util.MD5Util;
-import cn.likole.TravelBetter.util.MailUtil;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.struts2.ServletActionContext;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -32,6 +29,8 @@ public class UserController extends ActionSupport implements ModelDriven<User> {
     String fileFileName;
     String fileContentType;
     String ak;
+    @Autowired
+    UserService userService;
 
     public String getAk() {
         return ak;
@@ -89,9 +88,6 @@ public class UserController extends ActionSupport implements ModelDriven<User> {
         this.map = map;
     }
 
-    @Autowired
-    UserService userService;
-
     @Override
     public User getModel() {
         return user;
@@ -120,8 +116,9 @@ public class UserController extends ActionSupport implements ModelDriven<User> {
      * @return
      */
     public String login() {
-        setMessage(userService.login(usernameOrEmail, user.getPassword()));
-        map.put("token", userService.getToken(usernameOrEmail));
+        int rsCode = userService.login(usernameOrEmail, user.getPassword());
+        setMessage(rsCode);
+        if (rsCode == 0) map.put("token", userService.getToken(usernameOrEmail));
         return SUCCESS;
     }
 

@@ -1,9 +1,6 @@
 package cn.likole.TravelBetter.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by likole on 8/3/17.
@@ -15,6 +12,7 @@ public class FindPicture {
     private int fid;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pid")
     public int getPid() {
         return pid;
