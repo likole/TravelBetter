@@ -13,6 +13,7 @@
         <element id="library" level="project" name="EE_6" />
         <element id="library" level="project" name="lib" />
         <element id="library" level="project" name="dom4j-1.6.1" />
+        <element id="library" level="project" name="fastjson-1.2.21" />
       </element>
     </root>
   </artifact>
