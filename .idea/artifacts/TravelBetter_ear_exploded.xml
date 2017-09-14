@@ -9,11 +9,12 @@
       <element id="directory" name="lib">
         <element id="library" level="project" name="Hibernate 5.2.10-5.2.10" />
         <element id="library" level="project" name="Struts 2-2.3.20.1" />
-        <element id="library" level="project" name="spring" />
-        <element id="library" level="project" name="EE_6" />
-        <element id="library" level="project" name="lib" />
-        <element id="library" level="project" name="dom4j-1.6.1" />
-        <element id="library" level="project" name="fastjson-1.2.21" />
+        <element id="library" level="project" name="javaee-6" />
+        <element id="library" level="project" name="spring-4.3" />
+        <element id="library" level="project" name="mysql-connector-java-5.1.25-bin" />
+        <element id="library" level="project" name="struts2-spring-plugin-2.5.10.1" />
+        <element id="library" level="project" name="struts2-json-plugin-2.5.10.1" />
+        <element id="library" level="project" name="c3p0-0.9.5.2" />
       </element>
     </root>
   </artifact>

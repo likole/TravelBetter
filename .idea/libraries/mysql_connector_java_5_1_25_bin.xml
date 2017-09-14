@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="mysql-connector-java-5.1.25-bin">
+    <CLASSES>
+      <root url="jar:///media/likole/a608c48e-37e2-4f28-b3a4-d9ad5956b8a8/lib/mysql-connector-java-5.1.25-bin.jar!/" />
+      <root url="jar:///media/likole/a608c48e-37e2-4f28-b3a4-d9ad5956b8a8/lib/slf4j-log4j12-1.7.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

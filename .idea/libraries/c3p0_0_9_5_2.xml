@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="c3p0-0.9.5.2">
+    <CLASSES>
+      <root url="jar:///media/likole/a608c48e-37e2-4f28-b3a4-d9ad5956b8a8/lib/hibernate-5.2.9/optional/c3p0/c3p0-0.9.5.2.jar!/" />
+      <root url="jar:///media/likole/a608c48e-37e2-4f28-b3a4-d9ad5956b8a8/lib/hibernate-5.2.9/optional/c3p0/mchange-commons-java-0.2.11.jar!/" />
+      <root url="jar:///media/likole/a608c48e-37e2-4f28-b3a4-d9ad5956b8a8/lib/hibernate-5.2.9/optional/c3p0/hibernate-c3p0-5.2.9.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="spring-4.3">
+    <CLASSES>
+      <root url="file:///media/likole/a608c48e-37e2-4f28-b3a4-d9ad5956b8a8/lib/spring-4.3.7" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file:///media/likole/a608c48e-37e2-4f28-b3a4-d9ad5956b8a8/lib/spring-4.3.7" />
+    </SOURCES>
+    <jarDirectory url="file:///media/likole/a608c48e-37e2-4f28-b3a4-d9ad5956b8a8/lib/spring-4.3.7" recursive="false" />
+    <jarDirectory url="file:///media/likole/a608c48e-37e2-4f28-b3a4-d9ad5956b8a8/lib/spring-4.3.7" recursive="false" type="SOURCES" />
+  </library>
+</component>
