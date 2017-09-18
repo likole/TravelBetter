@@ -5,17 +5,13 @@ import cn.likole.TravelBetter.dto.UserDto;
 import cn.likole.TravelBetter.entity.User;
 import cn.likole.TravelBetter.util.MD5Util;
 import cn.likole.TravelBetter.util.MailUtil;
-import org.omg.CORBA.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.security.provider.MD5;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -39,7 +35,7 @@ public class UserService {
     public int register(String username, String password) {
         if (username == null || "".equals(username)) return 101;
         if (username.contains("@")) return 106;
-        if (password.length() != 32) return 102;
+//        if (password.length() != 32) return 102;
         if (userDao.exist(username)) return 103;
         User user = new User();
         user.setUsername(username);
@@ -61,7 +57,7 @@ public class UserService {
      */
     public int login(String usernameOrEmail, String password) {
         if (usernameOrEmail == null || "".equals(usernameOrEmail)) return 101;
-        if (password.length() != 32) return 102;
+//        if (password.length() != 32) return 102;
         User user = userDao.getByUsernameOrEmail(usernameOrEmail);
         if (user == null) return 104;
         if (!user.getPassword().equals(password)) return 105;
